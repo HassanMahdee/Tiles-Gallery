@@ -11,15 +11,17 @@ export const playfair = Playfair_Display({
   subsets: ["latin"],
 });
 
-export const metadata = {
+const metadata = {
   title: "Home | Tiles Gallery",
   description: "Explore our collection of beautiful tiles",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="h-full antialiased">
-      <body className={`${inter.className} min-h-full flex flex-col bg-background text-foreground`}>
+    <html lang="en" className="h-full antialiased suppressHydrationWarning">
+      <body
+        className={`${inter.className} min-h-full flex flex-col bg-background text-foreground`}
+      >
         <Providers>
           <Navbar />
           {children}
@@ -28,4 +30,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-

@@ -2,55 +2,108 @@
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useEffect } from "react";
+import { playfair } from "@/app/layout";
+import { LuSunDim } from "react-icons/lu";
+import { LuMoon } from "react-icons/lu";
+import Link from "next/link";
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme(
-    localStorage.getItem("theme") || "light",
-  );
+  const { theme, setTheme } = useTheme("light");
   useEffect(() => {
-    localStorage.setItem("theme", theme);
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme) {
+        setTheme(savedTheme);
+      }
+    }
+  }, [setTheme]);
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem("theme", theme);
+    }
   }, [theme]);
-
+  console.log(theme);
   return (
-    <div className="navbar bg-base-100 shadow-sm">
-      <div className="flex-1">
-        <a className="btn btn-ghost text-xl">daisyUI</a>
-      </div>
-      <div className="flex-none">
-        <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-            <div className="indicator">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {" "}
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                />{" "}
-              </svg>
-              <span className="badge badge-sm indicator-item">8</span>
-            </div>
-          </div>
+    <div
+      className="navbar shadow-sm px-4 lg:px-52 sticky top-0 z-50"
+      style={{ backgroundColor: "var(--color-bg)" }}
+    >
+      <div className="navbar-start gap-4 md:gap-0">
+        <div className="dropdown">
           <div
             tabIndex={0}
-            className="card card-compact dropdown-content bg-base-100 z-1 mt-3 w-52 shadow"
+            role="button"
+            className="btn btn-ghost p-0 lg:hidden"
           >
-            <div className="card-body">
-              <span className="text-lg font-bold">8 Items</span>
-              <span className="text-info">Subtotal: $999</span>
-              <div className="card-actions">
-                <button className="btn btn-primary btn-block">View cart</button>
-              </div>
-            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              {" "}
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />{" "}
+            </svg>
           </div>
+          <ul
+            tabIndex="-1"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+          >
+            <li>
+              <a>Home</a>
+            </li>
+            <li>
+              <a>All Tiles</a>
+            </li>
+            <li>
+              <a>My Profile</a>
+            </li>
+          </ul>
         </div>
+        <div className="flex items-center justify-center gap-1 lg:gap-2">
+          <Image src="/logo.png" alt="Logo" width={32} height={32} />
+          <Link
+            href="/"
+            className={`font-semibold text-2xl p-0 ${playfair.className}`}
+            style={{ color: "var(--color-text)" }}
+          >
+            Tiles Gallery
+          </Link>
+        </div>
+      </div>
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal px-1">
+          <li>
+            <Link href="/" style={{ color: "var(--color-text)" }}>
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link href="/all-tiles" style={{ color: "var(--color-text)" }}>
+              All Tiles
+            </Link>
+          </li>
+          <li>
+            <Link href="/my-profile" style={{ color: "var(--color-text)" }}>
+              My Profile
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <div className="navbar-end flex gap-2">
+        <button
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+          className="btn btn-outline btn-circle"
+          style={{ color: "var(--color-text)" }}
+        >
+          {theme === "light" ? <LuMoon /> : <LuSunDim />}
+        </button>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}
@@ -59,7 +112,7 @@ export default function Navbar() {
           >
             <div className="w-10 rounded-full">
               <Image
-                alt="Tailwind CSS Navbar component"
+                alt="user avatar"
                 src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
                 width={40}
                 height={40}
@@ -68,19 +121,14 @@ export default function Navbar() {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow"
+            style={{ backgroundColor: "var(--color-surface)" }}
           >
             <li>
-              <a className="justify-between">
-                Profile
-                <span className="badge">New</span>
-              </a>
+              <a style={{ color: "var(--color-text)" }}>Profile</a>
             </li>
             <li>
-              <a>Settings</a>
-            </li>
-            <li>
-              <a>Logout</a>
+              <a style={{ color: "var(--color-text)" }}>Logout</a>
             </li>
           </ul>
         </div>
