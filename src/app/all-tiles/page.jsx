@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Searchbar from "@/components/searchbar/searchbar";
+import Link from "next/link";
 export async function generateMetadata() {
   return {
     title: "All Tiles | Tiles Gallery",
@@ -39,9 +40,9 @@ export default async function AllTiles({ searchParams }) {
             <p className="text-sm max-w-sm max-h-12 text-(--color-text-muted) px-4">
               {tile.description}
             </p>
-            <button className="btn bg-(--color-primary) text-white px-4 py-2 rounded-4xl self-end mr-3 mb-4 shadow-sm">
+            <Link href={`/all-tiles/${tile.id}`} className="btn bg-(--color-primary) text-white px-4 py-2 rounded-4xl self-end mr-3 mb-4 shadow-sm">
               Details
-            </button>
+            </Link>
           </div>
         ))}
       </div>
