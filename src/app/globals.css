@@ -5,13 +5,11 @@
 :root,
 [data-theme="light"] {
   --color-bg: #faf8f5;
-  --color-surface: #ffffff;
+  --color-card: #ffffff;
   --color-text: #2d2d2d;
   --color-text-muted: #6b6b6b;
   --color-primary: #c46d5e;
   --color-secondary: #1e5e6b;
-  --color-border: #e8e3d9;
-  --color-hover: #f0ede6;
   --color-error: #b91c1c;
 }
 

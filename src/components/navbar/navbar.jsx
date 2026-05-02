@@ -1,13 +1,12 @@
 import Image from "next/image";
 import { playfair } from "@/app/layout";
-import { LuSunDim } from "react-icons/lu";
-import { LuMoon } from "react-icons/lu";
 import Link from "next/link";
+import NavLinks from "./navLinks";
 
 export default function Navbar() {
   return (
     <div
-      className="navbar shadow-sm px-4 lg:px-52 sticky top-0 z-50"
+      className="navbar shadow-sm px-4 lg:px-8 sticky top-0 z-50"
       style={{ backgroundColor: "var(--color-bg)" }}
     >
       <div className="navbar-start gap-4 md:gap-0">
@@ -38,13 +37,13 @@ export default function Navbar() {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <a>Home</a>
+              <NavLinks href="/">Home</NavLinks>
             </li>
             <li>
-              <a>All Tiles</a>
+              <NavLinks href="/all-tiles">All Tiles</NavLinks>
             </li>
             <li>
-              <a>My Profile</a>
+              <NavLinks href="/my-profile">My Profile</NavLinks>
             </li>
           </ul>
         </div>
@@ -62,19 +61,19 @@ export default function Navbar() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link href="/" style={{ color: "var(--color-text)" }}>
+            <NavLinks href="/" style={{ color: "var(--color-text)" }}>
               Home
-            </Link>
+            </NavLinks>
           </li>
           <li>
-            <Link href="/all-tiles" style={{ color: "var(--color-text)" }}>
+            <NavLinks href="/all-tiles" style={{ color: "var(--color-text)" }}>
               All Tiles
-            </Link>
+            </NavLinks>
           </li>
           <li>
-            <Link href="/my-profile" style={{ color: "var(--color-text)" }}>
+            <NavLinks href="/my-profile" style={{ color: "var(--color-text)" }}>
               My Profile
-            </Link>
+            </NavLinks>
           </li>
         </ul>
       </div>
@@ -98,7 +97,7 @@ export default function Navbar() {
             tabIndex="-1"
             className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow"
             style={{ backgroundColor: "var(--color-surface)" }}
-          >
+          > 
             <li>
               <a style={{ color: "var(--color-text)" }}>Profile</a>
             </li>
