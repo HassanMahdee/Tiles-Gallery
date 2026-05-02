@@ -1,28 +1,10 @@
-"use client";
-import { useTheme } from "next-themes";
 import Image from "next/image";
-import { useEffect } from "react";
 import { playfair } from "@/app/layout";
 import { LuSunDim } from "react-icons/lu";
 import { LuMoon } from "react-icons/lu";
 import Link from "next/link";
 
 export default function Navbar() {
-  const { theme, setTheme } = useTheme("light");
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme) {
-        setTheme(savedTheme);
-      }
-    }
-  }, [setTheme]);
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("theme", theme);
-    }
-  }, [theme]);
-  console.log(theme);
   return (
     <div
       className="navbar shadow-sm px-4 lg:px-52 sticky top-0 z-50"
@@ -97,13 +79,6 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="navbar-end flex gap-2">
-        <button
-          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-          className="btn btn-outline btn-circle"
-          style={{ color: "var(--color-text)" }}
-        >
-          {theme === "light" ? <LuMoon /> : <LuSunDim />}
-        </button>
         <div className="dropdown dropdown-end">
           <div
             tabIndex={0}

@@ -15,14 +15,3 @@
   --color-error: #b91c1c;
 }
 
-[data-theme="dark"] {
-  --color-bg: #121212;
-  --color-surface: #1e1e1e;
-  --color-text: #eae0d5;
-  --color-text-muted: #a8a29e;
-  --color-primary: #d88a7a;
-  --color-secondary: #3aabae;
-  --color-border: #2e2e2e;
-  --color-hover: #2a2a2a;
-  --color-error: #ef4444;
-}
