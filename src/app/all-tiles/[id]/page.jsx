@@ -1,4 +1,16 @@
 import Image from "next/image";
+
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const tile = await fetch(`http://localhost:3001/tiles/${id}`).then((res) =>
+    res.json(),
+  );
+  return {
+    title: `Tile ${tile.title} - Tiles Gallery`,
+    description: `Details of tile ${tile.title}`,
+  };
+}
+
 export default async function TileDetail({ params }) {
   const { id } = await params;
   const tile = await fetch(`http://localhost:3001/tiles/${id}`).then((res) =>
@@ -38,7 +50,11 @@ export default async function TileDetail({ params }) {
         </div>
         <div className="flex justify-between items-center p-4">
           <p className="text-(--color-text-muted)">
-            Price: <span className="font-semibold text-2xl">{tile.price}{tile.currency}</span>
+            Price:{" "}
+            <span className="font-semibold text-2xl">
+              {tile.price}
+              {tile.currency}
+            </span>
           </p>
           {tile.inStock !== undefined ? (
             tile.inStock ? (

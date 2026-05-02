@@ -13,7 +13,7 @@ export default function Searchbar() {
       <SearchField.Group>
         <SearchField.SearchIcon />
         <SearchField.Input
-          className="w-100"
+          className="w-full md:w-100"
           placeholder="Case sensitive full-title search (JSON-Server issue)"
           value={search}
           onChange={(e) => {

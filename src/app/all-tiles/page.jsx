@@ -17,11 +17,11 @@ export default async function AllTiles({ searchParams }) {
   ).then((res) => res.json());
   return (
     <div className="p-8 container mx-auto">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col md:flex-row justify-between items-center gap-2">
         <h3 className="text-2xl font-bold">All Products</h3>
         <Searchbar />
       </div>
-      <div className="grid grid-cols-3 gap-4 py-4 items-center justify-items-center w-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 py-4 items-center justify-items-center w-full">
         {tileData.map((tile) => (
           <div
             key={tile.id}
