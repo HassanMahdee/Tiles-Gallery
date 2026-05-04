@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import { authClient } from "@/lib/auth-client";
 import { useState } from "react";
 import { LuEye, LuEyeClosed } from "react-icons/lu";
+import { FaGoogle } from "react-icons/fa";
+
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const {
@@ -18,6 +20,15 @@ export default function LoginForm() {
       email,
       password,
       rememberMe: true,
+      callbackURL: "/",
+    });
+    if (error) {
+      toast.error(error.message);
+    }
+  };
+  const handleGoogleLogin = async () => {
+    const { data: googleData, error } = await authClient.signIn.social({
+      provider: "google",
       callbackURL: "/",
     });
     if (error) {
@@ -54,12 +65,20 @@ export default function LoginForm() {
             {showPassword ? <LuEye /> : <LuEyeClosed />}
           </button>
         </div>
-        <button
-          className="btn btn-primary mt-4 rounded-full"
-          onClick={handleSubmit(handleLogin)}
-        >
-          Login
-        </button>
+        <div className="flex w-full gap-2">
+          <button
+            className="btn btn-primary mt-4 rounded-full flex-1"
+            onClick={handleSubmit(handleLogin)}
+          >
+            Login
+          </button>
+          <button
+            className="btn btn-outline border-secondary text-secondary mt-4 rounded-full"
+            onClick={handleGoogleLogin}
+          >
+            <FaGoogle /> Login with Google
+          </button>
+        </div>
       </fieldset>
       <p className="mt-4">
         New here?{" "}
