@@ -8,24 +8,28 @@ export function generateMetadata() {
 export default function Login() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh]">
-      <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-96 max-h-fit border p-4 mx-auto">
-        <legend className="fieldset-legend">Login</legend>
-
+      <fieldset className="fieldset w-96 max-h-fit p-4 mx-auto">
         <label className="label">Email</label>
-        <input type="email" className="input w-full" placeholder="Email" />
+        <input
+          type="email"
+          className="input w-full"
+          placeholder="Email"
+          isRequired
+        />
 
         <label className="label">Password</label>
         <input
           type="password"
           className="input w-full"
           placeholder="Password"
+          isRequired
         />
 
-        <button className="btn btn-primary mt-4">Login</button>
+        <button className="btn btn-primary mt-4 rounded-full">Login</button>
       </fieldset>
       <p className="mt-4">
         New here?{" "}
-        <Link className="link" href="/register">
+        <Link className="text-primary" href="/register">
           Register
         </Link>
       </p>
