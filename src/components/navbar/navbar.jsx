@@ -2,8 +2,15 @@ import Image from "next/image";
 import { playfair } from "@/app/layout";
 import Link from "next/link";
 import NavLinks from "./navLinks";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import LogoutBtn from "./logoutBtn";
 
-export default function Navbar() {
+export default async function Navbar() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const user = session?.user;
   return (
     <div
       className="navbar shadow-sm px-4 lg:px-8 sticky top-0 z-50"
@@ -78,34 +85,43 @@ export default function Navbar() {
         </ul>
       </div>
       <div className="navbar-end flex gap-2">
-        <div className="dropdown dropdown-end">
-          <div
-            tabIndex={0}
-            role="button"
-            className="btn btn-ghost btn-circle avatar"
-          >
-            <div className="w-10 rounded-full">
-              <Image
-                alt="user avatar"
-                src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
-                width={40}
-                height={40}
-              />
+        {user ? (
+          <>
+            <h4 className="text-lg font-semibold">Hello, {user.name}</h4>
+            <div className="dropdown dropdown-end">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost btn-circle avatar"
+              >
+                <div className="w-10 rounded-full">
+                  <Image
+                    alt="user avatar"
+                    src={user?.image || "/default-avatar.png"}
+                    width={40}
+                    height={40}
+                  />
+                </div>
+              </div>
+              <ul
+                tabIndex="-1"
+                className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow"
+                style={{ backgroundColor: "var(--color-surface)" }}
+              >
+                <li>
+                  <a style={{ color: "var(--color-text)" }}>Profile</a>
+                </li>
+                <li>
+                  <LogoutBtn />
+                </li>
+              </ul>
             </div>
-          </div>
-          <ul
-            tabIndex="-1"
-            className="menu menu-sm dropdown-content rounded-box z-1 mt-3 w-52 p-2 shadow"
-            style={{ backgroundColor: "var(--color-surface)" }}
-          > 
-            <li>
-              <a style={{ color: "var(--color-text)" }}>Profile</a>
-            </li>
-            <li>
-              <a style={{ color: "var(--color-text)" }}>Logout</a>
-            </li>
-          </ul>
-        </div>
+          </>
+        ) : (
+          <Link href="/login" className="btn btn-primary">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
