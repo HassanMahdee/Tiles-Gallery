@@ -14,8 +14,8 @@ export default async function MyProfile() {
         My Profile
       </h1>
       {user ? (
-        <div className="flex flex-col items-center justify-center border border-gray-300 flex-1 w-[40%] p-8 gap-8">
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col items-center justify-center border border-gray-300 flex-1 lg:w-[40%] p-8 gap-8">
+          <div className="flex flex-col lg:flex-row items-center gap-4">
             <div className="rounded-full border-2 border-gray-300 overflow-hidden">
               <Image
                 src={user.image || "/default-avatar.png"}
@@ -36,7 +36,7 @@ export default async function MyProfile() {
             href="/my-profile/update-profile"
             className="btn btn-primary text-(--color-bg) rounded-full hover:bg-primary/80 transition-colors"
           >
-            Update
+            Update your profile
           </Link>
         </div>
       ) : (

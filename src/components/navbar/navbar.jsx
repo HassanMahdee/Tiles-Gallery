@@ -87,7 +87,9 @@ export default async function Navbar() {
       <div className="navbar-end flex gap-2">
         {user ? (
           <>
-            <h4 className="text-lg font-semibold">Hello, {user.name}</h4>
+            <h4 className="hidden lg:block text-lg font-semibold">
+              Hello, {user.name}
+            </h4>
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
@@ -109,7 +111,7 @@ export default async function Navbar() {
                 style={{ backgroundColor: "var(--color-surface)" }}
               >
                 <li>
-                  <a style={{ color: "var(--color-text)" }}>Profile</a>
+                  <Link href="/my-profile" style={{ color: "var(--color-text)" }}>Profile</Link>
                 </li>
                 <li>
                   <LogoutBtn />

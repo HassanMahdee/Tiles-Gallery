@@ -43,10 +43,7 @@ export default function UpdateProfileForm() {
       />
       <div className="flex gap-2">
         <Button type="submit" className="w-full bg-(--color-primary)">
-          Submit
-        </Button>
-        <Button type="reset" className="w-full bg-(--color-secondary)">
-          Reset
+          Update
         </Button>
       </div>
     </Form>

@@ -14,10 +14,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { LuEye, LuEyeClosed } from "react-icons/lu";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
   const { register, handleSubmit } = useForm();
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
   const handleRegister = async (data) => {
     const { name, email, password, profilePicture } = data;
     const { data: userData, error } = await authClient.signUp.email({
@@ -32,6 +34,8 @@ export default function RegisterForm() {
     }
     if (userData) {
       toast.success("User registered successfully");
+      router.push("/my-profile");
+      router.refresh();
     }
   };
   return (

@@ -6,9 +6,11 @@ import { authClient } from "@/lib/auth-client";
 import { useState } from "react";
 import { LuEye, LuEyeClosed } from "react-icons/lu";
 import { FaGoogle } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -16,7 +18,7 @@ export default function LoginForm() {
   } = useForm();
   const handleLogin = async (data) => {
     const { email, password } = data;
-    const { error } = await authClient.signIn.email({
+    const { data: userData, error } = await authClient.signIn.email({
       email,
       password,
       rememberMe: true,
@@ -24,6 +26,10 @@ export default function LoginForm() {
     });
     if (error) {
       toast.error(error.message);
+    }
+    if (userData) {
+      router.push("/");
+      router.refresh();
     }
   };
   const handleGoogleLogin = async () => {
