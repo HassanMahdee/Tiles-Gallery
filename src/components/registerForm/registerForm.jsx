@@ -36,6 +36,7 @@ export default function RegisterForm() {
   };
   return (
     <div className="flex flex-col gap-4 min-h-[80vh] items-center justify-center">
+      <h2 className="text-2xl font-bold">Register</h2>
       <Form
         className="flex w-96 flex-col gap-4"
         onSubmit={handleSubmit(handleRegister)}

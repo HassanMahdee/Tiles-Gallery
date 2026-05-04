@@ -16,7 +16,7 @@ export default function LoginForm() {
   } = useForm();
   const handleLogin = async (data) => {
     const { email, password } = data;
-    const { data: userData, error } = await authClient.signIn.email({
+    const { error } = await authClient.signIn.email({
       email,
       password,
       rememberMe: true,
@@ -27,7 +27,7 @@ export default function LoginForm() {
     }
   };
   const handleGoogleLogin = async () => {
-    const { data: googleData, error } = await authClient.signIn.social({
+    const { error } = await authClient.signIn.social({
       provider: "google",
       callbackURL: "/",
     });
@@ -37,6 +37,7 @@ export default function LoginForm() {
   };
   return (
     <div className="flex flex-col items-center justify-center min-h-[80vh]">
+      <h2 className="text-2xl font-bold">Login</h2>
       <fieldset className="fieldset w-96 max-h-fit p-4 mx-auto">
         <label className="label">Email</label>
         <input

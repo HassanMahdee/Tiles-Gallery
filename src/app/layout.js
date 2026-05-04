@@ -4,7 +4,7 @@ import "./globals.css";
 import { Playfair_Display, Inter } from "next/font/google";
 import Navbar from "@/components/navbar/navbar";
 import Footer from "@/components/footer/footer";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -33,7 +33,19 @@ export default function RootLayout({ children }) {
         <Navbar />
         {children}
         <Footer />
-        <ToastContainer />
+        <ToastContainer
+          position="top-center"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          transition={Zoom}
+        />
       </body>
     </html>
   );
