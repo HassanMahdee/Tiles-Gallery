@@ -11,7 +11,7 @@ export default async function AllTiles({ searchParams }) {
   const resolved = await searchParams;
   const search = resolved.title;
   console.log(search);
-  const url = "http://localhost:3001/tiles";
+  const url = "https://tiles-gallery-server-xxzo.onrender.com/tiles";
   const tileData = await fetch(
     search ? `${url}?title=${search}` : url,
   ).then((res) => res.json());

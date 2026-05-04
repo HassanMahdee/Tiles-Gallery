@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export async function generateMetadata({ params }) {
   const { id } = await params;
-  const tile = await fetch(`http://localhost:3001/tiles/${id}`).then((res) =>
+  const tile = await fetch(`https://tiles-gallery-server-xxzo.onrender.com/tiles/${id}`).then((res) =>
     res.json(),
   );
   return {
