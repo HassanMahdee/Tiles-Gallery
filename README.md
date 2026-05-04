@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Tiles Gallery 🧱
 
-## Getting Started
+A modern, fully responsive tile showcase built with **Next.js App Router**, **BetterAuth**, and **HeroUI+DaisyUI**. Browse a curated collection of ceramic, marble, porcelain, and geometric tiles – search, discover, and manage your profile seamlessly.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🌍 Live URL  
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+https://tiles-gallery-pi-five.vercel.app/
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎯 Purpose  
+The Tiles Gallery is designed to let customers explore a wide range of premium tiles, view detailed specifications, and manage their personal profiles. It demonstrates authentication (email/password + Google), private routes, dynamic metadata, theme toggling, and integration of an interactive carousel.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## ✨ Key Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **🔐 Authentication**  
+  Login/Register with email/password or Google (BetterAuth + MongoDB).  
+  Secure private routes (`/my-profile`, `/tile/[id]`) via middleware.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **🏠 Interactive Home Page**  
+  Hero banner, marquee announcement, and a Swiper carousel of featured tiles.
 
-## Deploy on Vercel
+- **🖼️ All Tiles Gallery**  
+  Search tiles by name using a large search bar. URL query parameters are synced for shareable filtered views.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **🔍 Tile Details**  
+  Private detail page showing large tile image, creator, description, material, dimensions, price, and style tags. Dynamic metadata (SEO) for each tile.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **👤 User Profile & Update**  
+  View logged‑in user data on `/my-profile`. Update name and photo URL via `/my-profile/update` (uses BetterAuth’s `updateUser`).
+
+- **📱 Fully Responsive**  
+  Mobile, tablet, and desktop layouts using HeroUI grid system and Swiper breakpoints.
+
+---
+
+## 📦 NPM Packages Used
+
+| Package              | Purpose |
+|----------------------|---------|
+| `next`               | React framework (App Router) |
+| `react` & `react-dom`| UI library |
+| `better-auth`        | Authentication (email/password, Google OAuth) |
+| `@better-auth/mongo-adapter` | MongoDB adapter for BetterAuth |
+| `mongodb`            | Database driver |
+| `@heroui/react`      | Main UI component library (HeroUI) |
+| `daisyui`            | Additional UI utilities & Tailwind CSS plugin (used alongside HeroUI) |
+| `next-themes`        | Theme provider for light/dark mode |
+| `swiper`             | Touch slider / carousel for featured tiles |
+| `react-fast-marquee` | Scrolling marquee text |
+| `react-hook-form`    | Form handling with validation |
+| `react-icons`        | Icon set (social, UI) |
+| `react-toastify`     | Alternative toast (available but replaced by react-hot-toast) |
+| `tailwindcss`        | Utility‑first CSS framework |
+
+---
+
+1. Clone the repo  
+   ```bash
+   git clone https://github.com/your-username/tiles-gallery.git
+   cd tiles-gallery
+   ```
+
+2. Install dependencies  
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables (`.env.local`)  
+
+4. Start the JSON server (for tile data)  
+   ```bash
+   json-server --watch data/tiles.json --port 5000
+   ```
+
+5. Run the Next.js development server  
+   ```bash
+   npm run dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 📄 License
+
+This project is created for educational purposes.
