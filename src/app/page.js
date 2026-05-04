@@ -1,12 +1,13 @@
 import Banner from "@/components/banner/banner";
 import Feature from "@/components/featureSection/feature";
 import MarqueeComponent from "@/components/featureSection/marqueeComponent";
-export default function Home() {
+export default async function Home() {
+  const featuredTiles = await fetch("http://localhost:3001/tiles?featured=true").then((res) => res.json());
   return (
     <div>
       <Banner />
       <MarqueeComponent />
-      <Feature />
+      <Feature tiles={featuredTiles} />
     </div>
   );
 }

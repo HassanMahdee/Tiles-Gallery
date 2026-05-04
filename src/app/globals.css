@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "@heroui/styles";
 @plugin "daisyui";
+@import "swiper/css";
+@import "swiper/css/navigation";
+@import "swiper/css/pagination";
 
 :root,
 [data-theme="light"] {
